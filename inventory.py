@@ -1,19 +1,23 @@
+# Verma Medical Store - Inventory Manager
+
 class InventoryManager:
     def __init__(self):
-        self.stock = {
-            "Paracetamol": {"price": 15.0, "qty": 100},
-            "Amoxicillin": {"price": 45.0, "qty": 30},
-            "Cetirizine": {"price": 10.0, "qty": 8}
-        }
+        self.medicines = {}
 
-    def display_stock(self):
-        print("\n--- CURRENT MEDICINE STOCK ---")
-        for med, info in self.stock.items():
-            print(f"Name: {med:<15} | Price: ₹{info['price']:<6} | Stock: {info['qty']} units")
-
-    def add_medicine(self, name, price, qty):
-        if name in self.stock:
-            self.stock[name]['qty'] += qty
+    def add_medicine(self, medicine):
+        # If medicine already exists, update quantity
+        if medicine.name in self.medicines:
+            self.medicines[medicine.name].quantity += medicine.quantity
         else:
-            self.stock[name] = {"price": price, "qty": qty}
-        print(f"Success: Added/Updated {qty} units of {name}.")
+            self.medicines[medicine.name] = medicine
+
+    def show_all_medicines(self):
+        if not self.medicines:
+            print("No medicines in stock currently.")
+            return
+        
+        print("\nName                 | Price         | Quantity")
+        print("-" * 45)
+        for med in self.medicines.values():
+            print(med)
+
