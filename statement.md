@@ -1,14 +1,14 @@
-# Problem Statement: MediQuick Pharmacy Management System
+# Verma Medical Store Management System
 
-## Problem Description
-Local medical stores and retail pharmacies face challenges in manually managing medicine inventory, preventing billing errors, and tracking stock thresholds effectively.
+A simple Python project built for managing pharmacy inventory and billing operations through a command-line interface.
 
-## Target Users
-- Small to medium-scale pharmacy owners.
-- Medical store staff and billing assistants.
+## Project Structure
+- main.py: Main entry point for menu options
+- models.py: Data structure for medicine items
+- inventory.py: Stock management functions
+- billing.py: Bill creation and stock reduction logic
+- reports.py: Low stock warning functions
 
-## Scope of the Project
-MediQuick is a Python terminal application that provides:
-1. Structured inventory management for pharmaceutical stock.
-2. Automated bill calculation and stock level updating.
-3. Low-stock reporting to alert users before medicines run out of stock.
+## How to Run
+Open Pydroid 3 or any Python terminal and run:
+python main.py
