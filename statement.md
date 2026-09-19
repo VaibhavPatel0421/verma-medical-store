@@ -1,14 +1,11 @@
-# Verma Medical Store Management System
 
-A simple Python project built for managing pharmacy inventory and billing operations through a command-line interface.
+# Problem Statement - Verma Medical Store System
 
-## Project Structure
-- main.py: Main entry point for menu options
-- models.py: Data structure for medicine items
-- inventory.py: Stock management functions
-- billing.py: Bill creation and stock reduction logic
-- reports.py: Low stock warning functions
+## Problem Description
+Small medical stores face issues while managing daily stock and generating manual bills. Sometimes medicines run out without warning, or billing errors happen during rush hours.
 
-## How to Run
-Open Pydroid 3 or any Python terminal and run:
-python main.py
+## Objective
+This project aims to automate inventory tracking, calculate accurate bill totals, reduce stock automatically after sales, and alert the store owner when medicine levels go low.
+
+## Target Audience
+Local pharmacy store owners and billing assistants.
