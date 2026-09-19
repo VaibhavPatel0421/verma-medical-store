@@ -10,7 +10,7 @@ Small and local medical stores usually manage their daily stock and bills on pap
 We built the "Verma Medical Store System", a simple Python program to make daily store work easy:
 1. **Stock Management:** It shows all available medicines, their prices, and remaining quantities in one place.
 2. **Quick Billing:** When a customer buys medicines, it automatically calculates the total bill and reduces the sold quantity from the stock.
-3. **Low Stock Warning:** If any medicine quantity goes below 10, the program shows a warning so the owner can order more in time.
+3. **Low Stock Warning:** If any medicine quantity goes below 10 units, the program shows a warning so the owner can order more in time.
 
 ## Who Is This For?
 - Local pharmacy owners and their store staff.
