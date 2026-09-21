@@ -1,12 +1,10 @@
-# Verma Medical Store - Medicine Class
+# Verma Medical Store - Medicine Data Model
 
-class Medicine:
-    def __init__(self, name, price, quantity):
-        self.name = name
-        self.price = price
-        self.quantity = quantity
-
-    def __str__(self):
-        return f"{self.name:<20} | Price: Rs.{self.price:<8.2f} | Stock: {self.quantity}"
-
+def create_medicine(name, price, quantity):
+    # Returns a simple dictionary for a medicine item
+    return {
+        "name": name,
+        "price": float(price),
+        "quantity": int(quantity)
+    }
 
