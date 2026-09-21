@@ -1,58 +1,62 @@
-# Verma Medical Store - Billing System
 
-class BillingSystem:
-    def __init__(self, inventory):
-        self.inventory = inventory
+                
 
-    def start_new_bill(self):
-        if not self.inventory.medicines:
-            print("Stock is empty! Add medicines before billing.")
-            return
+       # Verma Medical Store - Billing System
 
-        total_amount = 0.0
-        bill_items = []
+from inventory import inventory_list
 
-        while True:
-            med_name = input("Enter medicine name (or type 'done' to finish): ").strip()
-            if med_name.lower() == 'done':
+def start_new_bill():
+    if not inventory_list:
+        print("Stock is empty! Add medicines first.")
+        return
+
+    total_amount = 0.0
+    bill_items = []
+
+    while True:
+        med_name = input("Enter medicine name (or type 'done' to finish): ").strip()
+        if med_name.lower() == 'done':
+            break
+
+        # Search for medicine in inventory list
+        selected_item = None
+        for item in inventory_list:
+            if item["name"].lower() == med_name.lower():
+                selected_item = item
                 break
 
-            if med_name not in self.inventory.medicines:
-                print("Medicine not found in stock! Check the spelling.")
+        if not selected_item:
+            print("Medicine not found! Check spelling.")
+            continue
+
+        try:
+            qty = int(input(f"Enter quantity for {selected_item['name']}: "))
+            if qty <= 0:
+                print("Quantity must be greater than zero.")
+                continue
+            if qty > selected_item["quantity"]:
+                print(f"Only {selected_item['quantity']} units left in stock!")
                 continue
 
-            stock_item = self.inventory.medicines[med_name]
+            # Calculate price and reduce stock
+            cost = selected_item["price"] * qty
+            total_amount += cost
+            selected_item["quantity"] -= qty
 
-            try:
-                qty = int(input(f"Enter quantity for {med_name}: "))
-                if qty <= 0:
-                    print("Quantity must be greater than zero.")
-                    continue
-                if qty > stock_item.quantity:
-                    print(f"Only {stock_item.quantity} units available in stock!")
-                    continue
+            bill_items.append({"name": selected_item["name"], "qty": qty, "cost": cost})
+            print(f"Added {qty} x {selected_item['name']} to bill.")
 
-                item_cost = stock_item.price * qty
-                total_amount += item_cost
-                stock_item.quantity -= qty # Stock kam kar rahe hain
+        except ValueError:
+            print("Please enter a valid number for quantity.")
 
-                bill_items.append((med_name, qty, item_cost))
-                print(f"Added {qty} x {med_name} to cart.")
-
-            except ValueError:
-                print("Please enter a valid number for quantity.")
-
-        # Print Final Bill Receipt
-        if bill_items:
-            print("\n" + "=" * 35)
-            print("       VERMA MEDICAL STORE")
-            print("          CUSTOMER BILL")
-            print("=" * 35)
-            for name, qty, cost in bill_items:
-                print(f"{name:<18} x{qty:<3} = Rs.{cost:.2f}")
-            print("-" * 35)
-            print(f"TOTAL AMOUNT:        Rs.{total_amount:.2f}")
-            print("=" * 35)
-            print("Thank you! Visit again.\n")
-        else:
-            print("No items added to bill.")
+    # Print Final Bill
+    if bill_items:
+        print("\n" + "=" * 35)
+        print("VERMA MEDICAL STORE")
+        print("CUSTOMER BILL")
+        print("=" * 35)
+        for item in bill_items:
+            print(f"{item['name']:<18} x{item['qty']:<3} = Rs.{item['cost']:.2f}")
+        print("-" * 35)
+        print(f"TOTAL AMOUNT:        Rs.{total_amount:.2f}")
+        print("=" * 35)
