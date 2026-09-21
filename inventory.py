@@ -1,23 +1,28 @@
 # Verma Medical Store - Inventory Manager
 
-class InventoryManager:
-    def __init__(self):
-        self.medicines = {}
+# Main inventory list to store medicine dictionaries
+inventory_list = []
 
-    def add_medicine(self, medicine):
-        # If medicine already exists, update quantity
-        if medicine.name in self.medicines:
-            self.medicines[medicine.name].quantity += medicine.quantity
-        else:
-            self.medicines[medicine.name] = medicine
-
-    def show_all_medicines(self):
-        if not self.medicines:
-            print("No medicines in stock currently.")
+def add_medicine(name, price, quantity):
+    # Check if medicine already exists in list
+    for item in inventory_list:
+        if item["name"].lower() == name.lower():
+            item["quantity"] += quantity
+            print(f"Updated quantity for {item['name']}.")
             return
-        
-        print("\nName                 | Price         | Quantity")
-        print("-" * 45)
-        for med in self.medicines.values():
-            print(med)
+
+    # Add new item
+    new_item = {"name": name, "price": float(price), "quantity": int(quantity)}
+    inventory_list.append(new_item)
+    print(f"Added {name} to inventory.")
+
+def show_all_medicines():
+    if not inventory_list:
+        print("No medicines available in stock.")
+        return
+
+    print("\nName                 | Price (Rs) | Quantity")
+    print("-" * 45)
+    for item in inventory_list:
+        print(f"{item['name']:<20} | {item['price']:<10.2f} | {item['quantity']}")
 
