@@ -1,7 +1,4 @@
-
-                
-
-       # Verma Medical Store - Billing System
+# Verma Medical Store - Billing System
 
 from inventory import inventory_list
 
@@ -51,12 +48,8 @@ def start_new_bill():
 
     # Print Final Bill
     if bill_items:
-        print("\n" + "=" * 35)
         print("VERMA MEDICAL STORE")
         print("CUSTOMER BILL")
-        print("=" * 35)
         for item in bill_items:
             print(f"{item['name']:<18} x{item['qty']:<3} = Rs.{item['cost']:.2f}")
-        print("-" * 35)
         print(f"TOTAL AMOUNT:        Rs.{total_amount:.2f}")
-        print("=" * 35)
